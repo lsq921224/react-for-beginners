@@ -9,7 +9,7 @@ import StorePicker from './components/StorePicker';
 import NotFound from './components/NotFound';
 
 const Root = () => {
-	return (
+  return (
 		<BrowserRouter>
 			<div>
 				<Match exactly pattern="/" component={ StorePicker } />
@@ -17,7 +17,7 @@ const Root = () => {
 				<Miss component={ NotFound } />
 			</div>
 		</BrowserRouter>
-	)
+  )
 };
 
 render(<Root/>, document.querySelector('#main'));
