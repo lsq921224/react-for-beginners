@@ -15,7 +15,7 @@ class App extends React.Component {
     };
   }
 
-  addFish = (fish) => {
+  addFish = fish => {
     const fishes = { ...this.state.fishes };
     const timeStamp = Date.now();
     fishes[ `fish-${timeStamp}` ] = fish;
@@ -28,6 +28,12 @@ class App extends React.Component {
     })
   };
 
+  addToOrder = key => {
+    const order = { ...this.state.order };
+    order[key] = order[key] + 1 || 1;
+    this.setState({ order });
+  };
+
   render() {
     return (
       <div className="catch-of-the-day">
@@ -37,7 +43,7 @@ class App extends React.Component {
             {
               Object
                 .keys(this.state.fishes)
-                .map(key => <Fish key={ key } details={ this.state.fishes[key] } />)
+                .map(key => <Fish key={ key } index={ key } details={ this.state.fishes[key] } addToOrder={ this.addToOrder } />)
             }
           </ul>
         </div>
