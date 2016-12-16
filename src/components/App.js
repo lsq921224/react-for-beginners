@@ -47,7 +47,13 @@ class App extends React.Component {
   addFish = fish => {
     const fishes = { ...this.state.fishes };
     const timeStamp = Date.now();
-    fishes[ `fish-${timeStamp}` ] = fish;
+    fishes[`fish-${timeStamp}`] = fish;
+    this.setState({ fishes });
+  };
+
+  updateFish = (key, updatedFish) => {
+    const fishes = { ...this.state.fishes };
+    fishes[key] = updatedFish;
     this.setState({ fishes });
   };
 
@@ -72,7 +78,8 @@ class App extends React.Component {
             {
               Object
                 .keys(this.state.fishes)
-                .map(key => <Fish key={ key } index={ key } details={ this.state.fishes[key] } addToOrder={ this.addToOrder } />)
+                .map(key => <Fish key={ key } index={ key } details={ this.state.fishes[key] }
+                                  addToOrder={ this.addToOrder } />)
             }
           </ul>
         </div>
@@ -81,7 +88,12 @@ class App extends React.Component {
           order={ this.state.order }
           params={ this.props.params }
         />
-        <Inventory addFish={ this.addFish } loadSamples={ this.loadSamples } />
+        <Inventory
+          addFish={ this.addFish }
+          loadSamples={ this.loadSamples }
+          fishes={ this.state.fishes }
+          updateFish={ this.updateFish }
+        />
       </div>
     )
   }
