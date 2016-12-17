@@ -3,14 +3,10 @@ import AddFishForm from './AddFishForm';
 import base from '../base'
 
 class Inventory extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      uid: null,
-      owner: null
-    }
-  }
+  state = {
+    uid: null,
+    owner: null
+  };
 
   componentDidMount() {
     base.onAuth(user => {
@@ -131,15 +127,15 @@ class Inventory extends React.Component {
       </div>
     )
   }
-}
 
-Inventory.propTypes = {
-  fishes: React.PropTypes.object.isRequired,
-  updateFish: React.PropTypes.func.isRequired,
-  removeFish: React.PropTypes.func.isRequired,
-  addFish: React.PropTypes.func.isRequired,
-  loadSamples: React.PropTypes.func.isRequired,
-  storeId: React.PropTypes.string.isRequired
-};
+  static propTypes = {
+    fishes: React.PropTypes.object.isRequired,
+    updateFish: React.PropTypes.func.isRequired,
+    removeFish: React.PropTypes.func.isRequired,
+    addFish: React.PropTypes.func.isRequired,
+    loadSamples: React.PropTypes.func.isRequired,
+    storeId: React.PropTypes.string.isRequired
+  };
+}
 
 export default Inventory;

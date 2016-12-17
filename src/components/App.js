@@ -7,14 +7,10 @@ import sampleFishes from '../sample-fishes';
 import base from '../base';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      fishes: {},
-      order: {}
-    };
-  }
+  state = {
+    fishes: {},
+    order: {}
+  };
 
   componentWillMount() {
     // This runs right before the <App> is rendered
@@ -112,10 +108,10 @@ class App extends React.Component {
       </div>
     )
   }
-}
 
-App.propTypes = {
-  params: React.PropTypes.object.isRequired
-};
+  static propTypes = {
+    params: React.PropTypes.object.isRequired
+  };
+}
 
 export default App;
