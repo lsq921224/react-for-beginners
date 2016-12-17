@@ -57,6 +57,12 @@ class App extends React.Component {
     this.setState({ fishes });
   };
 
+  removeFish = key => {
+    const fishes = { ...this.state.fishes };
+    fishes[key] = null;
+    this.setState({ fishes });
+  };
+
   loadSamples = () => {
     this.setState({
       fishes: sampleFishes
@@ -66,6 +72,12 @@ class App extends React.Component {
   addToOrder = key => {
     const order = { ...this.state.order };
     order[key] = order[key] + 1 || 1;
+    this.setState({ order });
+  };
+
+  removeFromOrder = key => {
+    const order = { ...this.state.order };
+    delete order[key];
     this.setState({ order });
   };
 
@@ -87,16 +99,23 @@ class App extends React.Component {
           fishes={ this.state.fishes }
           order={ this.state.order }
           params={ this.props.params }
+          removeFromOrder={ this.removeFromOrder }
         />
         <Inventory
           addFish={ this.addFish }
           loadSamples={ this.loadSamples }
           fishes={ this.state.fishes }
           updateFish={ this.updateFish }
+          removeFish={ this.removeFish }
+          storeId={ this.props.params.storeId }
         />
       </div>
     )
   }
 }
+
+App.propTypes = {
+  params: React.PropTypes.object.isRequired
+};
 
 export default App;
